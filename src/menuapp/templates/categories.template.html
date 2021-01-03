@@ -1,4 +1,4 @@
 <h1>Categories</h1>
 <div class="navbar-nav" ng-repeat="list in $ctrl.myData.data">
-  <a href="#/home" class="nav-item nav-link active">({{list.short_name}}) {{list.name}}</a>
+  <a ui-sref="list({categoryShortName:'{{list.short_name}}'})" class="nav-item nav-link active">({{list.short_name}}) {{list.name}}</a>
 </div>

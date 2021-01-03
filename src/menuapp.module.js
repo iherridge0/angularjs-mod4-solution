@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-angular.module('MenuApp',['ui.router', 'data', 'Categories']);
+angular.module('MenuApp',['ui.router', 'data', 'Categories', 'ItemsList']);
 
 angular.module('MenuApp')
 .config(RoutesConfig);
@@ -26,6 +26,17 @@ function RoutesConfig($stateProvider, $urlRouterProvider) {
       resolve: {
         myData: ['MenuDataService', function (MenuDataService) {
           return MenuDataService.getAllCategories();
+        }]
+      }
+    })
+
+    .state('list', {
+      url: '/list/{categoryShortName}',
+      templateUrl: 'src/menuapp/templates/items.template.html',
+      controller: 'ItemsListController as $ctrl',
+      resolve: {
+        myData: ['$stateParams', 'MenuDataService', function ($stateParams, MenuDataService) {
+          return MenuDataService.getItemsForCategory($stateParams.categoryShortName);
         }]
       }
     });

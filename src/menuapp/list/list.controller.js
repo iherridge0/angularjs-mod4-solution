@@ -2,16 +2,17 @@
 'use strict';
 
 angular.module('ItemsList')
-.controller('ItemsListController', CategoriesController);
+.controller('ItemsListController', ItemsListController);
 
-CategoriesController.$inject = ['myData']
-function CategoriesController(myData){
+ItemsListController.$inject = ['myData']
+function ItemsListController(myData){
   var $ctrl = this;
 
 
 
   $ctrl.$onInit = function () {
-    $ctrl.myData = myData;
+    $ctrl.myData = myData.data["menu_items"];
+    console.log($ctrl.myData)
   }
 };
 
