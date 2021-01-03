@@ -1,4 +1,4 @@
-<p>Categories is working</p>
-<div class="row" >
-  {{$ctrl.myData}}
+<h1>Categories</h1>
+<div class="navbar-nav" ng-repeat="list in $ctrl.myData.data">
+  <a href="#/home" class="nav-item nav-link active">({{list.short_name}}) {{list.name}}</a>
 </div>
