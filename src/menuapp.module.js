@@ -1,6 +1,7 @@
 (function () {
+  'use strict';
 
-angular.module('MenuApp',['ui.router', 'Categories']);
+angular.module('MenuApp',['ui.router', 'data', 'Categories']);
 
 angular.module('MenuApp')
 .config(RoutesConfig);
