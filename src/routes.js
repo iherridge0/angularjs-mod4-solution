@@ -1,6 +1,6 @@
 (function () {
 
-angular.module('MenuApp',['ui.router']);
+angular.module('MenuApp',['ui.router', 'Categories']);
 
 angular.module('MenuApp')
 .config(RoutesConfig);
@@ -15,22 +15,18 @@ function RoutesConfig($stateProvider, $urlRouterProvider) {
   $stateProvider
     .state('home', {
       url: '/',
-      templateUrl: 'src/menuapp/templates/home.menuapp.template.html'
+      templateUrl: 'src/menuapp/templates/home.template.html'
     })
 
     .state('categories', {
       url: '/categories',
-      templateUrl: 'src/menuapp/templates/categories.template.html'
-    })
-
-    .state('tab1', {
-      url: '/tab1',
-      templateUrl: 'src/tab1.html'
-    })
-
-    .state('tab2', {
-      url: '/tab2',
-      templateUrl: 'src/tab2.html'
+      templateUrl: 'src/menuapp/templates/categories.template.html',
+      controller: 'CategoriesController as $ctrl',
+      resolve: {
+        myData: ['MenuDataService', function (MenuDataService) {
+          return MenuDataService.getAllCategories();
+        }]
+      }
     });
 }
 
